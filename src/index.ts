@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 import path from 'path';
-import fs from 'fs';
 
 import chalk from 'chalk';
 import yargs from 'yargs';
 
-import generateFromFile from './generateIndexFromFiles';
-import generateFromFolder from './generateIndexFromFolders';
+import generateForFolder from './generateIndexForFolder';
 
-export const generateIndexFromFiles = generateFromFile;
-export const generateIndexFromFolders = generateFromFolder;
+export const generateIndexForFolder = generateForFolder;
 
 export function runCli() {
   const argv = yargs(process.argv.slice(2)).option('f', {
@@ -22,27 +19,18 @@ export function runCli() {
   const folder = (argv._[0] as string) || './';
   const sourceFolder = path.join(process.cwd(), folder);
 
-  let indexContentFile = '';
-  if (!argv.from) {
-    const foldersExports = generateIndexFromFolders(sourceFolder);
-    const filesExports = generateIndexFromFiles(sourceFolder);
-    indexContentFile = `${foldersExports}\n${filesExports}`;
-  } else {
-    const fromFiles = argv.from === 'files';
-    indexContentFile = fromFiles
-      ? generateIndexFromFiles(sourceFolder)
-      : generateIndexFromFolders(sourceFolder);
-  }
+  if (generateIndexForFolder(sourceFolder, 10))
+    chalk.green('\n> Successfully to build the index.ts file \n');
 
-  fs.writeFile(path.join(sourceFolder, 'index.ts'), indexContentFile, err => {
-    if (err) {
-      console.error(err);
-    }
+  // fs.writeFile(path.join(sourceFolder, 'index.ts'), indexContentFile, err => {
+  //   if (err) {
+  //     console.error(err);
+  //   }
 
-    console.log(
-      chalk.green('\n> Successfully to build the index.ts file :)\n')
-    );
-  });
+  //   console.log(
+  //     chalk.green('\n> Successfully to build the index.ts file :)\n')
+  //   );
+  // });
 }
 
 runCli();

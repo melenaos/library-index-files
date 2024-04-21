@@ -1,71 +1,58 @@
 # generate-index-file
 
-Automatic creation of index.ts file with export-values from a list of files or folders
+Automatic creation of index.ts file with export-values from all files and folders recursively.  
 
 
 It will generate something like this for folders:
 ```
 --src/
 -----a/
+-------a1.vue
+-------a2.vue
 -----b/
+-------b1.vue
+-------b2.vue
 -----c/
 ```
 Index.ts:
 ```ts
   export { default as a } from './a';
   export { default as b } from './b';
-  export * as c from './c' // if the c folder doesn't have a index.ts with a default export.
-```
-And this for files:
-```
---src/
------a.ts
------b.tsx
------c.ts
-```
-```ts
-// the generated
-export { default as a } from './a';
-export { default as b } from './b';
-export { default as c } from './c';
+  export * as a from './a' 
+  export * as b from './b' 
+  //export * as c from './c'  // it will create the export only if there are files in it
 ```
 
-**By default, it will ignore folders without index.(ts|tsx).**
+a/Index.ts
+```ts
+  export { default as a1 } from './a1.vue';
+  export { default as a2 } from './a2.vue';
+```
+
+b/Index.ts
+```ts
+  export { default as b1 } from './b1.vue';
+  export { default as b2 } from './b2.vue';
+```
 
 ### Install
 npm:
 ```bash
-npm install generate-index-file
+npm install library-index-files
 ```
-Yarn
-```bash
-yarn add generate-index-file
-```
+
 ### Usage
 npm
 ```bash
-// to build based on all files and folders
 npx generate-index-file ./src
-// only based on folders
-npx generate-index-file ./src --from=folders
-// only based on files
-npx generate-index-file ./icons --from=filers
 ```
-yarn
-```bash
-// to build based on all files and folders
-yarn generate-index-file ./src
-// only based on folders
-yarn generate-index-file ./src --from=folders
-// only based on files
-yarn generate-index-file ./icons --from=files
-```
-
 
 
 ### Options
 ```
   --help
   --version  Show the version package
-  --from     Specify if you want to use folders or files to generate the index file.
 ```
+
+## Special thanks
+This library comes from cloning [generate-index-file](https://github.com/GiancarlosIO/generate-index-file).
