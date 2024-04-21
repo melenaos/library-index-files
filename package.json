@@ -39,6 +39,7 @@
   },
   "module": "dist/library-index-files.esm.js",
   "devDependencies": {
+    "lint":"0.8.19",
     "del": "4.1.1",
     "husky": "^5.1.3",
     "rollup-plugin-preserve-shebang": "^1.0.1",
