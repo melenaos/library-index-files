@@ -56,3 +56,14 @@ npx generate-index-file ./src
 
 ## Special thanks
 This library comes from cloning [generate-index-file](https://github.com/GiancarlosIO/generate-index-file).
+
+## Library structure
+
+### GitHub Actions
+There are two GitHub actions:
+- CI: It builds and lint on every commit
+- Publish NPM: With each new GitHub Release, a new NPM version is published.
+
+#### Setup GitHub Actions
+The only thing to configure is the NPM Access Token.
+To do that go to the Repository's Settings -> Secrets and variables -> Actions and a new *Repository Secret* named `NPM_TOKEN` with the token key you created at the npmjs.com.
