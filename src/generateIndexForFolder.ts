@@ -4,7 +4,11 @@ import chalk from 'chalk';
 
 import { getFileList, isDirectory } from './utils';
 
-function generateIndexForFolders(rootFolder: string, srcFolder: string, maxDepth: number): boolean {
+function generateIndexForFolders(
+  rootFolder: string,
+  srcFolder: string,
+  maxDepth: number
+): boolean {
   maxDepth--;
   if (maxDepth < 0) return false;
 
@@ -49,11 +53,15 @@ function generateIndexForFolders(rootFolder: string, srcFolder: string, maxDepth
   try {
     fs.writeFileSync(path.join(srcFolder, 'index.ts'), fileLines.join('\n'));
   } catch (err) {
-    console.info(chalk.red(`${srcFolder.replace(rootFolder, "")} > index.ts error: \n`));
+    console.info(
+      chalk.red(`${srcFolder.replace(rootFolder, '')} > index.ts error: \n`)
+    );
     console.error(err);
   }
 
-  console.info(chalk.green(`${srcFolder.replace(rootFolder, "")} > index.ts created \n`));
+  console.info(
+    chalk.green(`${srcFolder.replace(rootFolder, '')} > index.ts created \n`)
+  );
 
   return true;
 }

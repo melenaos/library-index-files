@@ -19,7 +19,7 @@ describe('blah', () => {
 
   it('Generates the index file content from Folders', async () => {
     const testFolder = path.join(__dirname, './package-test');
-    const given = generateIndexForFolder(testFolder, 10);
+    const given = generateIndexForFolder(__dirname, testFolder, 10);
 
     const indexContent = fs.readFileSync(
       path.join(testFolder, './index.ts'),
