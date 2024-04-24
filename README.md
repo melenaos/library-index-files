@@ -1,6 +1,6 @@
 # generate-index-file
-![Alt text](https://github.com/melenaos/library-index-files/actions/workflows/publish_npm.yml/badge.svg)
-![Alt text](https://github.com/melenaos/library-index-files/actions/workflows/main.yml/badge.svg)
+[![Alt text](https://github.com/melenaos/library-index-files/actions/workflows/publish_npm.yml/badge.svg)](https://github.com/melenaos/library-index-files/actions/workflows/publish_npm.yml)
+[![Alt text](https://github.com/melenaos/library-index-files/actions/workflows/main.yml/badge.svg)](https://github.com/melenaos/library-index-files/actions/workflows/main.yml)
 
 
 Automatic creation of index.ts file with export-values from all files and folders recursively.  
